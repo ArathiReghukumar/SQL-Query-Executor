@@ -1,0 +1,33 @@
+plugins {
+    id 'org.springframework.boot' version '2.5.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'war'
+}
+
+group = 'com.database'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "http://redshift-maven-repository.s3-website-us-east-1.amazonaws.com/release"
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+    compile('com.zaxxer:HikariCP:3.4.5')
+    compile('mysql:mysql-connector-java')
+    implementation files('unityjdbc.jar')
+    compile('com.amazon.redshift:redshift-jdbc42:1.2.41.1065')
+    compile('org.mongodb:mongo-java-driver:3.4.1')
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}

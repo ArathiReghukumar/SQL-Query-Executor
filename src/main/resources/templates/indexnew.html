@@ -1,0 +1,155 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="../mainnew.css">
+  <link rel="stylesheet" type="text/css" href="../pagination.css">
+
+</head>
+<div class="form-body">
+  <div class="form-loader">
+    <img src="../Spinner.gif" alt="Loader" id="loader">
+  </div>
+  <div class="navbar">
+    <ul class="horizontal">
+      <li><a class="active" href="javascript:void(0)">CS-527 Project</a></li>
+      <li class="rightli" style="float:right"><a id="theme" href="javascript:void(0)">Theme</a></li>
+      <li class="rightli" style="float:right"><a href="javascript:void(0)" data-toggle="modal"
+                                                 data-target="#myModal">Devs</a></li>
+    </ul>
+  </div>
+  <!-- Modal -->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Developers</h4>
+        </div>
+        <div class="modal-body">
+          <ul>
+            <li>Vipul Ishwarchandra Gharde (vig4)</li>
+            <li>Samyuktha Gopalsamy (sg1652)</li>
+            <li>Arathi Reghukumar (ar1778)</li>
+            <li>Karan Shirish Bheda (kb1096)</li>
+            <li>Nooria Ali (na717)</li>
+            <li>Rishika Bhanushali (rb1182)</li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-holder">
+      <div class="form-content">
+        <div class="form-items">
+          <h3>Query Editor</h3><br><br>
+          <form class="requires-validation" novalidate>
+
+
+            <div class="col-md-12 mt-3">
+              <label class="mb-3 mr-1" for="dbname">Database: </label>
+              <!--              <input id="dbname" type="text" placeholder="Name of database">-->
+              <select id="dbname">
+
+
+              </select><br><br>
+
+              <input type="radio" class="btn-check" name="choice" id="sql" autocomplete="off"
+                     required
+                     >
+              <label for="sql">MySQL</label>
+
+              <input type="radio" class="btn-check" name="choice" id="redshift" autocomplete="off"
+                     required
+                     >
+              <label for="redshift">Redshift</label><br><br>
+
+              <input type="radio" class="btn-check" name="choice" id="mongo" autocomplete="off"
+                     required
+                     >
+              <label for="mongo">MongoDb</label><br><br>
+
+
+              <div class="valid-feedback mv-up">You selected a framework!</div>
+              <div class="invalid-feedback mv-up">Please select a framework!</div>
+            </div>
+
+
+            <div class="col-md-12">
+              <textarea id="query" name="query" rows="4" cols="50"
+                        placeholder="Enter your sql query"></textarea><br><br>
+              <div class="valid-feedback">Query is valid!</div>
+              <div class="invalid-feedback">Query cannot be blank!</div>
+            </div>
+
+            <div class="form-button mt-3">
+              <a id="runButton" class="btn btn-secondary" onclick="SqlResult(1)">Run Query</a>
+              <a id="erDiagButton" class="btn btn-secondary">Show ER</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- this is where er & result will go-->
+    <div class="resultArea">
+      <!-- er diag here-->
+      <div class="outputBox" id="erDiag">
+        <div class="image">
+          <img src="../er.png">
+        </div>
+      </div>
+      <!-- table result here-->
+      <div class="outputBox" id="sqlOutput">
+        <div class="table-container" style="overflow-x:auto;">
+          <div id="message"></div>
+          <table id="result">
+
+          </table>
+        </div>
+        <div class="result-footer">
+          <div id="recordDiv">
+            Displaying
+            <select id="selectRecords">
+              <option value=50> 50</option>
+              <option value=100> 100</option>
+              <option value=200> 200</option>
+            </select>
+            Rows
+          </div>
+
+          <div id="pagination"></div>
+          <div id="exec-time">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script src="https://code.jquery.com/
+jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="../pagination.js"></script>
+<script src="../script.js"></script>
+
+</html>
